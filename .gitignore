@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+*.pem
+.pytest_cache/
+dist/
+*.egg-info/
+.venv/
+# local launcher (machine-specific path)
+/truth
