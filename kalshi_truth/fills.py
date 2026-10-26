@@ -47,9 +47,12 @@ def fill_side(fill: Dict[str, Any]) -> Optional[str]:
     """'yes' | 'no' | None — the side of the contract leg this fill traded.
 
     Kalshi deprecated `side` (and `action`) in May 2026 in favour of
-    `outcome_side`, "the outcome the user profits from". On every fill shape
-    this tool books, that is the same side `side` carried, so it is the
-    fallback for the day the legacy field disappears.
+    `outcome_side`, "the outcome the user profits from". It is read as the
+    fallback for the day the legacy field disappears. Caveat, unverified
+    against live fills carrying both fields: Kalshi's migration table maps
+    legacy sell/no to outcome_side=yes, while real NO entries arrived as
+    sell/no (see tests). If the two fields ever disagree, the per-market
+    fills/settlement cross-check and the cash identity will flag it.
     """
     for key in ("side", "outcome_side"):
         s = str(fill.get(key) or "").strip().lower()
