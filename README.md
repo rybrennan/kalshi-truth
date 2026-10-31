@@ -67,7 +67,7 @@ Each one fooled a real trading system's books. One left a lifetime P&L off by mo
 6. **History that silently truncates.** Stop paginating early and old trades just vanish.
 7. **The archive.** After about two months, fills and settlements move to separate `/historical` endpoints. Trackers built on the live ones quietly shrink.
 
-These aren't theoretical. Kalshi has since [deprecated the `action` and `side` fields](https://docs.kalshi.com/changelog) in favour of `outcome_side`, and open-source Kalshi libraries have [filed the same bugs](https://github.com/pmxt-dev/pmxt/issues/1188). Trap seven was found by this tool: the README listed six when it went to publish, and a full-history run before release came back with only two months of data. That is the check doing its job.
+These aren't theoretical. Kalshi has since [deprecated the `action` and `side` fields](https://docs.kalshi.com/changelog) in favour of `outcome_side`, and the change was enough of a hazard that pmxt, the open-source library wrapping Kalshi and Polymarket, [tracked the schema drift as an issue](https://github.com/pmxt-dev/pmxt/issues/1188). Trap seven was found by this tool: the README listed six when it went to publish, and a full-history run before release came back with only two months of data. That is the check doing its job.
 
 ## How it works
 
